@@ -1,5 +1,6 @@
 package com.example.sang_chalo
 
+import android.app.Activity
 import android.content.Intent
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -59,6 +60,7 @@ class myrideAdapter(val myride: ArrayList<Myrideclass>) : RecyclerView.Adapter<m
             itemView.startridebitton.setOnClickListener {
                 savend("true")
                 itemView.context.startActivity(Intent(itemView.context,Home::class.java))
+                (itemView.context as Activity).finish()
 
             }
 

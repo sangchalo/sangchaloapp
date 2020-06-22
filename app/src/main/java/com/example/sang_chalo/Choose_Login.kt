@@ -198,6 +198,7 @@ class Choose_Login : AppCompatActivity(),View.OnClickListener {
     private fun signIn() {
         val signInIntent = googleSignInClient.getSignInIntent()
         startActivityForResult(signInIntent, RC_SIGN_IN)
+
     }
 
     fun signOut() {

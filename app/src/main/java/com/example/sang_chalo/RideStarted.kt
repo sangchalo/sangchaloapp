@@ -56,6 +56,7 @@ class RideStarted : AppCompatActivity() {
         setContentView(R.layout.activity_ride_started)
         endride.setOnClickListener {
             startActivity(Intent(this,EndRide::class.java))
+            finish()
         }
         Places.initialize(getApplicationContext(), "AIzaSyAJXPLzaDk9SCoPBgLA0WR7oAwbnzhHEm0");
 

@@ -9,6 +9,9 @@ import kotlinx.android.synthetic.main.endrides.*
 import kotlinx.android.synthetic.main.endrides.view.*
 import kotlinx.android.synthetic.main.endrides.view.swipeend
 import kotlinx.android.synthetic.main.riderequest.view.*
+import android.app.Activity
+
+
 
 class endrideAdapter(val EndRide: ArrayList<endrideclass>) : RecyclerView.Adapter<endrideAdapter.ViewHolder>() {
 
@@ -57,6 +60,7 @@ class endrideAdapter(val EndRide: ArrayList<endrideclass>) : RecyclerView.Adapte
                 itemView.totalfare.text=rider.totalfare
                 itemView.swipeend.setOnStateChangeListener {
                     itemView.context.startActivity(Intent(itemView.context,Home::class.java))
+                    (itemView.context as Activity).finish()
                 }
 
 

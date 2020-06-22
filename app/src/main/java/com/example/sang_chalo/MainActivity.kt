@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                       }
                       else {
                           startActivity(Intent(this@MainActivity, Choose_Login::class.java))
+                            finish()
                       }
                   }catch (e:Exception)
                   {

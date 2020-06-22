@@ -46,6 +46,8 @@ class Home : AppCompatActivity() {
     private lateinit var fab_close:Animation
     private lateinit var fab_clock:Animation
     private lateinit var fab_anticlock:Animation
+    var from=false;
+    var tto=false
 
     var isRotate=false;
     var isFABOpen=false
@@ -263,12 +265,12 @@ var AUTOCOMPLETE_REQUEST_CODE=2
         }
         endridenavigator.setOnClickListener {
             startActivity(Intent(this,RideStarted::class.java))
-        }
+         }
 
        var fields = Arrays.asList(Place.Field.ID, Place.Field.NAME) as  List<Place.Field>
 // Start the autocomplete intent.
-            Frompastid.addTextChangedListener(object:TextWatcher{
 
+        Frompastid.addTextChangedListener(object:TextWatcher{
                 override fun afterTextChanged(p0: Editable?) {
 
                 }
@@ -277,6 +279,8 @@ var AUTOCOMPLETE_REQUEST_CODE=2
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    from=true
+
                     var intent =  Autocomplete.IntentBuilder(
                         AutocompleteActivityMode.OVERLAY, fields)
                         .build(this@Home);
@@ -286,6 +290,7 @@ var AUTOCOMPLETE_REQUEST_CODE=2
             })
 
         Frompastid.setOnClickListener {
+            from=true
 
             var intent =  Autocomplete.IntentBuilder(
                 AutocompleteActivityMode.OVERLAY, fields)
@@ -294,7 +299,6 @@ var AUTOCOMPLETE_REQUEST_CODE=2
 
         }
         Toid.addTextChangedListener(object:TextWatcher{
-
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -303,6 +307,8 @@ var AUTOCOMPLETE_REQUEST_CODE=2
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                tto=true
+
                 var intent =  Autocomplete.IntentBuilder(
                     AutocompleteActivityMode.OVERLAY, fields)
                     .build(this@Home);
@@ -312,6 +318,7 @@ var AUTOCOMPLETE_REQUEST_CODE=2
         })
 
         Toid.setOnClickListener {
+            tto=true
 
             var intent =  Autocomplete.IntentBuilder(
                 AutocompleteActivityMode.OVERLAY, fields)
@@ -349,7 +356,18 @@ override fun onActivityResult( requestCode:Int,  resultCode:Int,  data:Intent?) 
         if (resultCode == RESULT_OK) {
             var place = Autocomplete.getPlaceFromIntent(data!!);
 
+
+            if(from) {
+                Frompastid.setText(place.name.toString())
+                from=false
+            }
             Toast.makeText(this,place.name.toString(),Toast.LENGTH_LONG).show()
+            if(tto) {
+                Toid.setText(place.name.toString())
+                tto=false
+            }
+
+
 
         } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
             // TODO: Handle the error.

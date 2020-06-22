@@ -14,6 +14,7 @@ class SignIn : AppCompatActivity() {
 
         Signin_buttonid.setOnClickListener{
             startActivity(Intent(this,Home::class.java))
+            finish()
         }
     }
 }
